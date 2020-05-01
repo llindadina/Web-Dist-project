@@ -1,0 +1,28 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 9090
+spring:
+  application:
+    name: gatewayservice
+zuul:
+  
+  routes:
+    foos:
+      path: /**                                
+      url: http://localhost:8282/  
+      
+    #test:
+      #path: api/**
+      #serviceId: clientcontrat-service
+      #url: http://localhost:8181/
+    #route2:
+      #path: api/agent/**
+      #serviceId: agent-service
+      #url: http://localhost:8282/
+    #route3:
+     # path: api/**
+      #serviceId: agence-service
+ 

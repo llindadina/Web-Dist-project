@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: agent-service
+  name: agent-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agent-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: agent-service
+    spec:
+      containers:
+      - image: llinda/docker-agent
+        name: docker-agent
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: agent-service
+  name: agent-service
+spec:
+  ports:
+  - name: 8282-8282
+    port: 8282
+    protocol: TCP
+    targetPort: 8282
+  selector:
+    app: agent-service
+  type: ClusterIP
+status:
+  loadBalancer: {}

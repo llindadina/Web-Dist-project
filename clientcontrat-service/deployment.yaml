@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: clientcontrat-service
+  name: clientcontrat-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clientcontrat-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: clientcontrat-service
+    spec:
+      containers:
+      - image: llinda/docker-clientcontrat
+        name: docker-clientcontrat
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: clientcontrat-service
+  name: clientcontrat-service
+spec:
+  ports:
+  - name: 8181-8181
+    port: 8181
+    protocol: TCP
+    targetPort: 8181
+  selector:
+    app: clientcontrat-service
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: succursale-service
+  name: succursale-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: succursale-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: succursale-service
+    spec:
+      containers:
+      - image: llinda/docker-succursale
+        name: docker-succursale
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: succursale-service
+  name: succursale-service
+spec:
+  ports:
+  - name: 8383-8383
+    port: 8383
+    protocol: TCP
+    targetPort: 8383
+  selector:
+    app: succursale-service
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: service-register
+  name: service-register
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-register
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: service-register
+    spec:
+      containers:
+      - image: llinda/docker-eureka
+        name: docker-eureka
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: service-register
+  name: service-register
+spec:
+  ports:
+  - name: 8761-8761
+    port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: service-register
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: service-register
+  name: service-register
+spec:
+  ports:
+  - name: 8761-8761
+    port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: service-register
+  type: ClusterIP
+status:
+  loadBalancer: {}
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: service-register
+  name: service-register
+spec:
+  ports:
+  - name: 8761-8761
+    port: 8761
+    protocol: TCP
+    targetPort: 8761
+  selector:
+    app: service-register
+  type: ClusterIP
+status:
+  loadBalancer: {}
